@@ -1,4 +1,4 @@
-package com.example.demo_food_truck_find;
+package com.example.foodtrucks;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

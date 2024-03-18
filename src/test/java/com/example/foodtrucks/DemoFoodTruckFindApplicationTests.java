@@ -1,4 +1,4 @@
-package com.example.demo_food_truck_find;
+package com.example.foodtrucks;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

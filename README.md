@@ -1,65 +1,53 @@
-1. Spring boot là gì? Tại sao lại chọn Spring boot?
+# Spring Boot là gì? Tại sao lại chọn Spring Boot?
 
-Spring Boot là một dự án bổ sung của Spring, nhằm đơn giản hóa
-việc phát triển ứng dụng Spring
+Spring Boot là một dự án bổ sung của Spring, nhằm đơn giản hóa việc phát triển ứng dụng Spring.
 
-Sử dụng Annotation để Định nghĩa Endpoint: Spring Boot cung cấp các Annotation như @RestController, @GetMapping, @PostMapping, vv. để dễ dàng định nghĩa các endpoint RESTful mà không cần phải viết nhiều mã cấu hình.
+Spring Boot sử dụng Annotation để định nghĩa Endpoint, giúp dễ dàng xây dựng các endpoint RESTful mà không cần phải viết nhiều mã cấu hình. Các Annotation phổ biến như @RestController, @GetMapping, @PostMapping giúp việc xử lý HTTP requests trở nên dễ dàng và linh hoạt hơn.
 
-2. Cách build project dự án em chọn dependency:
 
-spring-boot-starter-web:
-+Dependency này là một trong những dependency cơ bản khi phát triển ứng dụng web với Spring Boot.
-Nó cung cấp các thư viện và cấu hình cần thiết để phát triển các ứng dụng web, bao gồm Spring MVC và một máy chủ nhúng (embedded server) như Tomcat để chạy ứng dụng.
 
-spring-boot-devtools:
-+Dependency này cung cấp các công cụ hỗ trợ cho quá trình phát triển và làm nhanh quá trình phát triển ứng dụng Spring Boot.
-Nó giúp giảm thời gian phát triển bằng cách tự động khởi động lại ứng dụng khi có sự thay đổi trong mã nguồn.
+# Thực thi dự án 
+Cấu hình RestTemplate trong `spring-boot-starter-web`
 
-spring-boot-starter-test:
-+chạy và quản lý các test unit trong ứng dụng Spring Boot
+Để cấu hình `RestTemplate` trong dự án sử dụng `spring-boot-starter-web`, ta sử dụng Annotation `@Configuration` để tạo bean `RestTemplate` thông qua Annotation `@Bean`.
 
-3. Cấu hình RestTemplate có sẵn trong spring-boot-starter-web bằng
-   +@Configuration để dùng @Bean tạo bean RestTemplate
-   -> để thực hiện các chức năng phức tạp gọi đến các REST services nên em dùng nó để call api lấy dữ liệu từ trang web khác .
+`RestTemplate` là một công cụ mạnh mẽ trong Spring Boot, được sử dụng để thực hiện các chức năng phức tạp như gọi đến các REST services từ các trang web khác để lấy dữ liệu.
 
-Sau đó dùng @RestController nó sẽ tự động ánh xạ các yêu cầu HTTP đến các phương thức trong lớp và trả về dữ liệu dưới dạng JSON hoặc XML
-@RequestMapping sử dụng ứng dụng chung cho đường dẫn api
-@CrossOrigin cho phép quy định các chính sách giao tiếp giữa các tài nguyên khác nhau từ các miền (origins) khác nhau
-Dùng @GetMapping để lấy giữ liệu tương ứng
+Sau khi cấu hình `RestTemplate` lấy dự liệu api từ một trang khác ta có thể sử dụng Annotation `@RestController` để tự động ánh xạ các yêu cầu HTTP đến các phương thức trong lớp và trả về dữ liệu dưới dạng JSON hoặc XML .
+- Annotation `@RequestMapping` được sử dụng để định nghĩa ứng dụng chung cho đường dẫn API. Annotation `@CrossOrigin` cho phép quy định các chính sách giao tiếp giữa các tài nguyên từ các miền (origins) khác nhau. Annotation `@GetMapping` được sử dụng để lấy dữ liệu tương ứng.
 
-     <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
+# Triển khai ứng dụng Spring Boot trên AWS EC2 sử dụng Putty
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+1. **Tạo EC2 Instance**: Bắt đầu bằng việc tạo một EC2 Instance trên AWS Console.
 
-4. Deploy Sping Boot Application with aws ec2 (.ppk->Putty)
+2. **Download private key file**: Sau khi tạo EC2 Instance, tải về tệp khóa riêng tư (.pem).
 
-Tạo EC2 Instance
+3. **Thay đổi security group sử dụng port 8081**: Chỉnh sửa cấu hình nhóm bảo mật của EC2 Instance để mở cổng 8081 để có thể truy cập vào ứng dụng.
 
-Dowload private key file
+4. **Kết nối EC2 sử dụng Putty**: Sử dụng Putty để kết nối với EC2 Instance bằng cách sử dụng địa chỉ IP công khai của EC2 và tệp khóa riêng tư (.pem).
 
-Thay đổi security group sử dụng port 8081
+    ```bash
+    ec2-user@public_host
+    ```
 
-Kết nối EC2 sử dụng Putty
-ec2-user@public_host
-Thêm ppk file to putty
+5. **Thêm tệp .ppk vào Putty**: Sử dụng Puttygen để chuyển đổi tệp khóa riêng tư (.pem) sang định dạng .ppk, sau đó thêm tệp .ppk vào Putty để kết nối với EC2.
 
-Copy Jar file to EC2@ using App WinScp
-sudo yum install java-17-openjdk-devel
+6. **Copy tệp Jar đến EC2 sử dụng WinSCP**: Sử dụng WinSCP để sao chép tệp jar của ứng dụng Spring Boot từ máy cục bộ của bạn đến EC2 Instance.
 
-Chạy chương trình java : java -jar jar_name
-(Cách tạo file jar -> Vào dự án ->cmd ->mvn clean install)
+7. **Cài đặt Java Development Kit trên EC2**: Chạy lệnh sau trên EC2 để cài đặt JDK:
+
+    ```bash
+    sudo yum install java-17-openjdk-devel
+    ```
+
+8. **Chạy ứng dụng Java**: Sử dụng lệnh sau để chạy ứng dụng Java trên EC2:
+
+    ```bash
+    java -jar jar_name
+    ```
+
+
+[GitHub back_end_foodStuckfind](https://github.com/thienc45/back_end_foodStuckfind.git)
+
 

@@ -1,4 +1,4 @@
-package com.example.demo_food_truck_find.config;
+package com.example.foodtrucks.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
