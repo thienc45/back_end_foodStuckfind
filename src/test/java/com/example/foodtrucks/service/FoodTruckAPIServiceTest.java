@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 //test của em đang fail
-@SpringBootTest
+@WebMvcTest(FoodTruckAPIService.class)
 public class FoodTruckAPIServiceTest {
 
     @MockBean
@@ -27,10 +28,12 @@ public class FoodTruckAPIServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
+
+
     @Test
     public void testGetFoodTruckData() {
         // Dữ liệu giả mạo để trả về từ API
-        String mockResponse = restTemplate.getForObject(ConstantsApiUrl.API_URL, String.class);
+        String mockResponse = "Your mock response here";
 
         // Thiết lập kết quả trả về mong đợi từ RestTemplate
         when(restTemplate.getForObject(ConstantsApiUrl.API_URL, String.class)).thenReturn(mockResponse);

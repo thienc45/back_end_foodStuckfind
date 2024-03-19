@@ -4,22 +4,25 @@ Spring Boot là một dự án bổ sung của Spring, nhằm đơn giản hóa 
 
 Spring Boot sử dụng Annotation để định nghĩa Endpoint, giúp dễ dàng xây dựng các endpoint RESTful mà không cần phải viết nhiều mã cấu hình. Các Annotation phổ biến như @RestController, @GetMapping, @PostMapping giúp việc xử lý HTTP requests trở nên dễ dàng và linh hoạt hơn.
 
-# Thực thi dự án
+# Code thực thi dự án
 
-Cấu hình RestTemplate trong `spring-boot-starter-web`
+![Alt text](image-9.png)
+Cấu hình đối tượng bean RestTemplate để ghi và nhận dữ liệu từ trang web khác 
+![Alt text](image-11.png)
+Cho phép các request từ các origin đã được chỉ định truy cập vào cấu hình chung thay vì sử dụng @Crossing
+![Alt text](image-12.png)
+Cả hai phương thức getFoodTruckData và getFoodTruckDataByLocationDescription đều sử dụng RestTemplate để gửi yêu cầu HTTP đến một API nhất định và nhận dữ liệu phản hồi từ API đó.
+![Alt text](image-14.png)
+![Alt text](image-13.png)
+Tạo api tương ưng thông qua @Getmaping để kết hợp font end .Dùng @RestController để trả về json
 
-Để cấu hình `RestTemplate` trong dự án sử dụng `spring-boot-starter-web`, ta sử dụng Annotation `@Configuration` để tạo bean `RestTemplate` thông qua Annotation `@Bean`.
 
-`RestTemplate` là một công cụ mạnh mẽ trong Spring Boot, được sử dụng để thực hiện các chức năng phức tạp như gọi đến các REST services từ các trang web khác để lấy dữ liệu.
-
-Sau khi cấu hình `RestTemplate` lấy dự liệu api từ một trang khác ta có thể sử dụng Annotation `@RestController` để tự động ánh xạ các yêu cầu HTTP đến các phương thức trong lớp và trả về dữ liệu dưới dạng JSON hoặc XML .
-
-- Annotation `@RequestMapping` được sử dụng để định nghĩa ứng dụng chung cho đường dẫn API. Annotation `@CrossOrigin` cho phép quy định các chính sách giao tiếp giữa các tài nguyên từ các miền (origins) khác nhau. Annotation `@GetMapping` được sử dụng để lấy dữ liệu tương ứng.
 
 # Triển khai ứng dụng Spring Boot trên AWS EC2 sử dụng Putty
 
 1.  **Tạo EC2 Instance**: Bắt đầu bằng việc tạo một EC2 Instance trên AWS Console.
     ![Alt text](image.png)
+
 
 2.  **Download private key file**: Sau khi tạo EC2 Instance, tải về tệp khóa riêng tư (.ppk).
     ![Alt text](image-1.png)
