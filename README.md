@@ -4,18 +4,19 @@ Spring Boot là một dự án bổ sung của Spring, nhằm đơn giản hóa 
 
 Spring Boot sử dụng Annotation để định nghĩa Endpoint, giúp dễ dàng xây dựng các endpoint RESTful mà không cần phải viết nhiều mã cấu hình. Các Annotation phổ biến như @RestController, @GetMapping, @PostMapping giúp việc xử lý HTTP requests trở nên dễ dàng và linh hoạt hơn.
 
-# Code thực thi dự án
+## Code thực thi dự án
 
-![Alt text](image-9.png)
-Cấu hình đối tượng bean RestTemplate để ghi và nhận dữ liệu từ trang web khác 
-![Alt text](image-11.png)
-Cho phép các request từ các origin đã được chỉ định truy cập vào cấu hình chung thay vì sử dụng @Crossing
-![Alt text](image-12.png)
-Cả hai phương thức getFoodTruckData và getFoodTruckDataByLocationDescription đều sử dụng RestTemplate để gửi yêu cầu HTTP đến một API nhất định và nhận dữ liệu phản hồi từ API đó.
-![Alt text](image-14.png)
-![Alt text](image-13.png)
-Tạo api tương ưng thông qua @Getmaping để kết hợp font end .Dùng @RestController để trả về json
+![Cấu hình bean RestTemplate](image-9.png)
+Cấu hình đối tượng bean RestTemplate để ghi và nhận dữ liệu từ trang web khác.
 
+![Cho phép request từ các origin](image-11.png)
+Cho phép các request từ các origin đã được chỉ định truy cập vào cấu hình chung thay vì sử dụng `@Crossing`.
+
+![Gửi yêu cầu HTTP và nhận dữ liệu](image-12.png)
+Cả hai phương thức `getFoodTruckData` và `getFoodTruckDataByLocationDescription` đều sử dụng RestTemplate để gửi yêu cầu HTTP đến một API nhất định và nhận dữ liệu phản hồi từ API đó.
+
+![Tạo API thông qua @GetMapping](image-13.png)
+Tạo API tương ứng bằng cách sử dụng `@GetMapping` để tích hợp với phía front end. Sử dụng `@RestController`  để trả về dữ liệu dưới dạng JSON.
 
 
 # Triển khai ứng dụng Spring Boot trên AWS EC2 sử dụng Putty
@@ -59,6 +60,11 @@ Tạo api tương ưng thông qua @Getmaping để kết hợp font end .Dùng @
     java -jar jar_name
     ```
 
-[GitHub back_end_foodStuckfind](https://github.com/thienc45/back_end_foodStuckfind.git)
-[GitHub font_end_foodStuckfind](https://github.com/thienc45/font_end_foodStuckFind.git)
-[Video demo foodStuckfind](https://1drv.ms/v/s!AvdQFkUv6DA8oC1112avAniNuWEr?e=TsuKnS)
+###
+
+- [GitHub back_end_foodStuckfind](https://github.com/thienc45/back_end_foodStuckfind.git)
+
+- [GitHub font_end_foodStuckfind](https://github.com/thienc45/font_end_foodStuckFind.git)
+
+- [Video demo foodStuckfind](https://1drv.ms/v/s!AvdQFkUv6DA8oC1112avAniNuWEr?e=TsuKnS)
+
