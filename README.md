@@ -7,23 +7,25 @@ Spring Boot sử dụng Annotation để định nghĩa Endpoint, giúp dễ dà
 ## Code thực thi dự án
 
 ![Cấu hình bean RestTemplate](image-9.png)
+
 Cấu hình đối tượng bean RestTemplate để ghi và nhận dữ liệu từ trang web khác.
 
 ![Cho phép request từ các origin](image-11.png)
+
 Cho phép các request từ các origin đã được chỉ định truy cập vào cấu hình chung thay vì sử dụng `@Crossing`.
 
 ![Gửi yêu cầu HTTP và nhận dữ liệu](image-12.png)
+
 Cả hai phương thức `getFoodTruckData` và `getFoodTruckDataByLocationDescription` đều sử dụng RestTemplate để gửi yêu cầu HTTP đến một API nhất định và nhận dữ liệu phản hồi từ API đó.
 
 ![Tạo API thông qua @GetMapping](image-13.png)
-Tạo API tương ứng bằng cách sử dụng `@GetMapping` để tích hợp với phía front end. Sử dụng `@RestController`  để trả về dữ liệu dưới dạng JSON.
 
+Tạo API tương ứng bằng cách sử dụng `@GetMapping` để tích hợp với phía front end. Sử dụng `@RestController` để trả về dữ liệu dưới dạng JSON.
 
 # Triển khai ứng dụng Spring Boot trên AWS EC2 sử dụng Putty
 
 1.  **Tạo EC2 Instance**: Bắt đầu bằng việc tạo một EC2 Instance trên AWS Console.
     ![Alt text](image.png)
-
 
 2.  **Download private key file**: Sau khi tạo EC2 Instance, tải về tệp khóa riêng tư (.ppk).
     ![Alt text](image-1.png)
@@ -67,4 +69,3 @@ Tạo API tương ứng bằng cách sử dụng `@GetMapping` để tích hợp
 - [GitHub font_end_foodStuckfind](https://github.com/thienc45/font_end_foodStuckFind.git)
 
 - [Video demo foodStuckfind](https://1drv.ms/v/s!AvdQFkUv6DA8oC1112avAniNuWEr?e=TsuKnS)
-
