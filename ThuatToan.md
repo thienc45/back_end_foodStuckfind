@@ -333,7 +333,7 @@ Thuật toán, tương tự như bất kỳ thuật toán đường đi ngắn n
 
 ![alt text](image-39.png)
 
-# **Lực lượng vũ phu**
+# **Thuật toán Sức Mạnh Thô Sơ**
 
 Thuật toán Brute Force đúng như tên gọi của chúng - các phương pháp đơn giản để giải quyết vấn đề dựa vào sức mạnh tính toán tuyệt đối và thử mọi khả năng thay vì các kỹ thuật nâng cao để nâng cao hiệu quả.
 
