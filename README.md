@@ -1,3 +1,4 @@
+
 # Spring Boot là gì? Tại sao lại chọn Spring Boot?
 
 Spring Boot là một dự án bổ sung của Spring, nhằm đơn giản hóa việc phát triển ứng dụng Spring.
