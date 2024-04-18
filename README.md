@@ -1,4 +1,3 @@
-
 # Spring Boot là gì? Tại sao lại chọn Spring Boot?
 
 Spring Boot là một dự án bổ sung của Spring, nhằm đơn giản hóa việc phát triển ứng dụng Spring.
@@ -39,34 +38,3 @@ Tạo API tương ứng bằng cách sử dụng `@GetMapping` để tích hợp
         ```bash
         ec2-user@public_host
         ```
-
-    ![Alt text](image-4.png)
-    ![Alt text](image-3.png)
-    ![Alt text](image-5.png)
-
-5.  **Thêm tệp .ppk vào Putty**: Sử dụng Puttygen để chuyển đổi tệp khóa riêng tư (.pem) sang định dạng .ppk, sau đó thêm tệp .ppk vào Putty để kết nối với EC2.
-    ![Alt text](image-6.png)
-
-6.  **Copy tệp Jar đến EC2 sử dụng WinSCP**: Sử dụng WinSCP để sao chép tệp jar của ứng dụng Spring Boot từ máy cục bộ của bạn đến EC2 Instance.!
-    [Alt text](image-7.png)
-    ![Alt text](image-8.png)
-
-7.  **Cài đặt Java Development Kit trên EC2**: Chạy lệnh sau trên EC2 để cài đặt JDK:
-
-    ```bash
-    sudo yum install java-17-openjdk-devel
-    ```
-
-8.  **Chạy ứng dụng Java**: Sử dụng lệnh sau để chạy ứng dụng Java trên EC2:
-
-    ```bash
-    java -jar jar_name
-    ```
-
-###
-
-- [GitHub back_end_foodStuckfind](https://github.com/thienc45/back_end_foodStuckfind.git)
-
-- [GitHub font_end_foodStuckfind](https://github.com/thienc45/font_end_foodStuckFind.git)
-
-- [Video demo foodStuckfind](https://1drv.ms/v/s!AvdQFkUv6DA8oC1112avAniNuWEr?e=TsuKnS)
