@@ -14,6 +14,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DemoFoodTruckFindApplication {
 
     public static void main(String[] args) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> f4458f5 (.)
+>>>>>>> c4726691d69de1089efb192179c21db6cee1675a
         SpringApplication.run(DemoFoodTruckFindApplication.class, args);
     }
 
