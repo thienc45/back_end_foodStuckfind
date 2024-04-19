@@ -24,4 +24,5 @@ public class FoodTruckAPIService {
         String apiUrlWithFilter = ConstantsApiUrl.API_URL + "?$where=locationDescription like '%" + locationDescription + "%'";
         return restTemplate.getForObject(apiUrlWithFilter, String.class);
     }
+
 }
