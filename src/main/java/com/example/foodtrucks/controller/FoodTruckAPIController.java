@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-@SecurityRequirement(name = "javainuseapi")
-public class FoodTruckAPIController {
+@SecurityRequirement(name = "basicAuth")
+        public class FoodTruckAPIController {
+
     private final FoodTruckAPIService foodTruckAPIService;
 
     @Autowired

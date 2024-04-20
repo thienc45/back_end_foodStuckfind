@@ -1,5 +1,6 @@
 package com.example.foodtrucks;
 
+import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -9,18 +10,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Swagger API Test", version = "2.0", description = "StuckFood Information"))
-@SecurityScheme(name = "javainuseapi", scheme = "basic", type = SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER)
+@OpenAPIDefinition(
+        info = @Info(title = "Swagger API Test",
+        version = "1.0",
+        description = "StuckFood Information"),
+        externalDocs = @ExternalDocumentation(description = "Basic for OAS to lean OAS with spring boot and jwt",
+                url = "https://www.javainuse.com/spring/boot_swagger3"))
+@SecurityScheme(name = "basicAuth", scheme = "basic",
+        type = SecuritySchemeType.HTTP,
+        in = SecuritySchemeIn.HEADER)
 public class DemoFoodTruckFindApplication {
 
     public static void main(String[] args) {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> f4458f5 (.)
->>>>>>> c4726691d69de1089efb192179c21db6cee1675a
         SpringApplication.run(DemoFoodTruckFindApplication.class, args);
     }
 

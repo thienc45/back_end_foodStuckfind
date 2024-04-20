@@ -11,25 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/swagger-ui/**", "/swagger-ui-custom.html", "/login", "/api-docs").permitAll()
-                .antMatchers("/api/**").hasAnyAuthority("ROLE_USER")
-                .anyRequest().authenticated()
-                .and()
-                .httpBasic();
-    }
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth, PasswordEncoder passwordEncoder) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("javainuse")
-                .password(passwordEncoder.encode("javainuse"))
-                .authorities("ROLE_USER");
-    }
-
+public class SecurityConfig   {
+   
 }
