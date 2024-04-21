@@ -1,4 +1,4 @@
-package com.example.foodtrucks.service;
+package com.example.foodtrucks.service.impl;
 
 import com.example.foodtrucks.contants.ConstantsApiUrl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,12 +6,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class FoodTruckAPIService {
+public class FoodTruckAPIServiceImpl {
 
     private final RestTemplate restTemplate;
 
     @Autowired
-    public FoodTruckAPIService(RestTemplate restTemplate) {
+    public FoodTruckAPIServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 

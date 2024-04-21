@@ -1,6 +1,6 @@
 package com.example.foodtrucks.controller;
 
-import com.example.foodtrucks.service.FoodTruckAPIService;
+import com.example.foodtrucks.service.impl.FoodTruckAPIServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/api")
-@SecurityRequirement(name = "basicAuth")
-        public class FoodTruckAPIController {
 
-    private final FoodTruckAPIService foodTruckAPIService;
+@RestController
+@RequestMapping("/api/foodtruct")
+public class FoodTruckAPIController {
+    private final FoodTruckAPIServiceImpl foodTruckAPIService;
 
     @Autowired
-    public FoodTruckAPIController(FoodTruckAPIService foodTruckAPIService) {
+    public FoodTruckAPIController(FoodTruckAPIServiceImpl foodTruckAPIService) {
         this.foodTruckAPIService = foodTruckAPIService;
     }
 
@@ -29,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
     @Operation(summary = "Find stuck by location description.")
     @GetMapping("/food-trucks/search")
+    @SecurityRequirement(name = "")
     public String searchFoodTrucksByLocationDescription(@RequestParam(required = false) String locationDescription) {
         if (locationDescription == null || locationDescription.isEmpty()) {
             return foodTruckAPIService.getFoodTruckData();

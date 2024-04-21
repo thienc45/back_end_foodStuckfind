@@ -5,9 +5,9 @@ import com.example.foodtrucks.config.AppConfig;
 
 
 import com.example.foodtrucks.contants.ConstantsApiUrl;
+import com.example.foodtrucks.service.impl.FoodTruckAPIServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 //test của em đang fail
-@SpringBootTest(classes = {FoodTruckAPIService.class, AppConfig.class})
+@SpringBootTest(classes = {FoodTruckAPIServiceImpl.class, AppConfig.class})
 
 
 
@@ -32,7 +32,7 @@ public class FoodTruckAPIServiceTest {
     private RestTemplate restTemplate;
 
     @InjectMocks
-    private FoodTruckAPIService foodTruckAPIService;
+    private FoodTruckAPIServiceImpl foodTruckAPIService;
 
     @BeforeEach
     public void setUp() {
