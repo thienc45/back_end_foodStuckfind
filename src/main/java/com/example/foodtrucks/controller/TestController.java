@@ -31,7 +31,6 @@ public class TestController {
     @Operation(summary = "This method is used to get the clients.")
     @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/user")
-    @PreAuthorize("hasRole('ROLE_USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public String userAccess() {
         return "User Content.";
     }
@@ -40,7 +39,6 @@ public class TestController {
     @Operation(summary = "This method is used to get the clients.")
     @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/mod")
-    @PreAuthorize("hasRole('ROLE_MODERATOR')")
     public String moderatorAccess() {
         return "Moderator Board.";
     }
@@ -49,7 +47,6 @@ public class TestController {
     @Operation(summary = "This method is used to get the clients.")
     @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/admin")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String adminAccess() {
         return "Admin Board.";
     }
