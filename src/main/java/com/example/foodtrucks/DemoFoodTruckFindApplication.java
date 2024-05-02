@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 //@SpringBootApplication
 //@SecurityScheme(name = "basicAuth", scheme = "basic",
@@ -19,6 +20,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
                 description = "StuckFood Information"),
         externalDocs = @ExternalDocumentation(description = "Basic for OAS to lean OAS with spring boot and jwt",
                 url = "https://www.javainuse.com/spring/boot_swagger3"))
+@EnableCaching
 @SpringBootApplication
 public class DemoFoodTruckFindApplication {
 
