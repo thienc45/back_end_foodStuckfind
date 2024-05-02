@@ -20,6 +20,7 @@ public class FoodTruckAPIController {
         this.foodTruckAPIService = foodTruckAPIService;
     }
 
+
     @Operation(summary = "This method is used to get all food truck stuck.")
     @GetMapping("/food-trucks")
     public String getFoodTruckData() {

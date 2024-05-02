@@ -36,6 +36,7 @@ public class RedisConfig  {
                 .withCacheConfiguration("foodtrucks", myDefaultCacheConfig(Duration.ofMinutes(5)))
                 .withCacheConfiguration("books", myDefaultCacheConfig(Duration.ofMinutes(5)))
                 .withCacheConfiguration("auth", myDefaultCacheConfig(Duration.ofMinutes(5)))
+                .withCacheConfiguration("test", myDefaultCacheConfig(Duration.ofMinutes(5)))
                 .build();
     }
 
