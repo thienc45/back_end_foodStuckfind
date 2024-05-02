@@ -58,8 +58,10 @@ public class SecurityConfig {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/auth/**", "/api/test/**", "/swagger-ui-custom.html", "/swagger-ui/**", "/api-docs", "/api/foodtruct/**","/books").permitAll()
+                        auth.requestMatchers("/api/auth/**", "/api/test/**", "/swagger-ui-custom.html", "/swagger-ui/**", "/api-docs", "/api/foodtruct/**").permitAll()
+                                .requestMatchers("/api/books/**").hasAuthority("ROLE_USER")
                                 //hasAuthority() có thể dùng nhanh cấu hình quyền thày vì dùng anotation  cấu hiình cho từng api
+
                                 .anyRequest().authenticated()
                 );
         http.authenticationProvider(authenticationProvider());

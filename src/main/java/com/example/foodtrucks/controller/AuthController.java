@@ -13,6 +13,10 @@ import com.example.foodtrucks.security.jwt.JwtUtils;
 import com.example.foodtrucks.service.impl.CustomUserDetailsImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,6 +37,7 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
+@CacheConfig(cacheNames = "auth")
 public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
@@ -50,6 +55,7 @@ public class AuthController {
     JwtUtils jwtUtils;
 
 
+    @CachePut(key = "#loginRequest.username")
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
@@ -71,6 +77,7 @@ public class AuthController {
 
     }
 
+    @CacheEvict(key = "#signUpRequest.username", allEntries = true)
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {

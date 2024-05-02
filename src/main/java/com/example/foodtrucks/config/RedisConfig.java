@@ -34,7 +34,8 @@ public class RedisConfig  {
         return RedisCacheManager.builder(redisConnectionFactory())
                 .cacheDefaults(cacheConfig)
                 .withCacheConfiguration("foodtrucks", myDefaultCacheConfig(Duration.ofMinutes(5)))
-                .withCacheConfiguration("foodtrucks", myDefaultCacheConfig(Duration.ofMinutes(1)))
+                .withCacheConfiguration("books", myDefaultCacheConfig(Duration.ofMinutes(5)))
+                .withCacheConfiguration("auth", myDefaultCacheConfig(Duration.ofMinutes(5)))
                 .build();
     }
 
@@ -44,4 +45,5 @@ public class RedisConfig  {
                 .entryTtl(duration)
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
     }
+
 }

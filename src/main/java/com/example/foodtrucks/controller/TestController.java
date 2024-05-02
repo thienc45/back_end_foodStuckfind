@@ -42,7 +42,6 @@ public class TestController {
         return "Moderator Board.";
     }
 
-
     @Operation(summary = "This method is used to get the clients.")
     @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/admin")
