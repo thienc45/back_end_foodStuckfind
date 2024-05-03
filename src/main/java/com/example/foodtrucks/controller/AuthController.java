@@ -79,7 +79,7 @@ public class AuthController {
                     roles));
         } else {
             String jwtCache = jwtUtils.generateJwtToken(authentication);
-            redisTemplate.opsForValue().set(ConstantRedisKey.KEY_USER, userDetails.getId(), Duration.ofMinutes(1));
+            redisTemplate.opsForValue().set(ConstantRedisKey.KEY_USER + userDetails.getId(), userDetails.getId(), Duration.ofMinutes(1));
 
             // Trả về response với token mới
             return ResponseEntity.ok(new JwtResponse(jwtCache,
@@ -145,7 +145,7 @@ public class AuthController {
         user.setRoles(roles);
         userRepository.save(user);
 
-        redisTemplate.opsForValue().set(ConstantRedisKey.KEY_USER, user.getId(), Duration.ofMinutes(1));
+        redisTemplate.opsForValue().set(ConstantRedisKey.KEY_USER + user.getId(), user.getId(), Duration.ofMinutes(1));
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }

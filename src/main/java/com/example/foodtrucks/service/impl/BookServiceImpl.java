@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class BookServiceImpl {
             List<Book> books = bookRepository.findAll();
             if (!books.isEmpty()) {
                 System.out.println("Caching books in Redis");
-                redisTemplate.opsForList().rightPushAll(ConstantRedisKey.KEY_BOOK_ALL, books.toArray());
+                redisTemplate.opsForList().rightPushAll(ConstantRedisKey.KEY_BOOK_ALL, books.toArray(), Duration.ofMinutes(1));
             }
 
             return books;
@@ -49,7 +50,7 @@ public class BookServiceImpl {
         Optional<Book> bookFromDatabase = bookRepository.findById(id);
 
         // Nếu sách tồn tại trong cơ sở dữ liệu, cache vào Redis
-        bookFromDatabase.ifPresent(book -> redisTemplate.opsForValue().set(ConstantRedisKey.KEY_BOOK + id, book));
+        bookFromDatabase.ifPresent(book -> redisTemplate.opsForValue().set(ConstantRedisKey.KEY_BOOK + id, book, Duration.ofMinutes(1)));
 
         //Thay thế cho đoạn lamda trên
         //        Optional<Book> bookOptional = bookFromDatabase;
