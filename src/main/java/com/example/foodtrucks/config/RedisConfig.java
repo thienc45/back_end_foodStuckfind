@@ -3,14 +3,11 @@ package com.example.foodtrucks.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheConfiguration;
-import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.core.RedisTemplate;
 
-import java.time.Duration;
 
 @Configuration
 public class RedisConfig  {
@@ -22,29 +19,25 @@ public class RedisConfig  {
 
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() {
+        System.out.println("Creating Redis connection factory");
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration(redisHost, redisPort);
+        LettuceConnectionFactory factory = new LettuceConnectionFactory(configuration);
+        System.out.println("Redis connection factory created successfully");
 
-        return new LettuceConnectionFactory(configuration);
+        return factory;
     }
+
 
     @Bean
-    public RedisCacheManager cacheManager() {
-        RedisCacheConfiguration cacheConfig = myDefaultCacheConfig(Duration.ofMinutes(10)).disableCachingNullValues();
-
-        return RedisCacheManager.builder(redisConnectionFactory())
-                .cacheDefaults(cacheConfig)
-                .withCacheConfiguration("foodtrucks", myDefaultCacheConfig(Duration.ofMinutes(5)))
-                .withCacheConfiguration("books", myDefaultCacheConfig(Duration.ofMinutes(5)))
-                .withCacheConfiguration("auth", myDefaultCacheConfig(Duration.ofMinutes(5)))
-                .withCacheConfiguration("test", myDefaultCacheConfig(Duration.ofMinutes(5)))
-                .build();
-    }
-
-    private RedisCacheConfiguration myDefaultCacheConfig(Duration duration) {
-        return RedisCacheConfiguration
-                .defaultCacheConfig()
-                .entryTtl(duration)
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
+    @Primary
+    public RedisTemplate<Object, Object> redisTemplate(LettuceConnectionFactory redisConnectionFactory) {
+        // tạo ra một RedisTemplate
+        // Với Key là Object
+        // Value là Object
+        // RedisTemplate giúp chúng ta thao tác với Redis
+        RedisTemplate<Object, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(redisConnectionFactory);
+        return template;
     }
 
 }

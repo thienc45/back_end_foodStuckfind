@@ -1,5 +1,6 @@
 package com.example.foodtrucks.controller;
 
+import com.example.foodtrucks.contants.ConstantRedisKey;
 import com.example.foodtrucks.entity.ERole;
 import com.example.foodtrucks.entity.Role;
 import com.example.foodtrucks.entity.User;
@@ -13,10 +14,7 @@ import com.example.foodtrucks.security.jwt.JwtUtils;
 import com.example.foodtrucks.service.impl.CustomUserDetailsImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Duration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,7 +36,6 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
-@CacheConfig(cacheNames = "auth")
 public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
@@ -54,8 +52,10 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
 
-    @CachePut(key = "#loginRequest.username")
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
@@ -68,16 +68,29 @@ public class AuthController {
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
+        Long userId = Long.valueOf(userDetails.getId());
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles));
+        String cachedIdUser = (String) redisTemplate.opsForValue().get(ConstantRedisKey.KEY_USER + userId);
+        if (cachedIdUser != null) {
+            return ResponseEntity.ok(new JwtResponse(jwt,
+                    userDetails.getId(),
+                    userDetails.getUsername(),
+                    userDetails.getEmail(),
+                    roles));
+        } else {
+            String jwtCache = jwtUtils.generateJwtToken(authentication);
+            redisTemplate.opsForValue().set(ConstantRedisKey.KEY_USER, userDetails.getId(), Duration.ofMinutes(1));
 
+            // Trả về response với token mới
+            return ResponseEntity.ok(new JwtResponse(jwtCache,
+                    userDetails.getId(),
+                    userDetails.getUsername(),
+                    userDetails.getEmail(),
+                    roles));
+        }
     }
 
-    @CacheEvict(key = "#signUpRequest.username", allEntries = true)
+
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -131,6 +144,8 @@ public class AuthController {
 
         user.setRoles(roles);
         userRepository.save(user);
+
+        redisTemplate.opsForValue().set(ConstantRedisKey.KEY_USER, user.getId(), Duration.ofMinutes(1));
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }

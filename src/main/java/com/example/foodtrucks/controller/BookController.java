@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -32,6 +33,7 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
         Optional<Book> book = bookService.getBookById(id);
@@ -41,7 +43,7 @@ public class BookController {
 
     @PostMapping("/add")
     public ResponseEntity<Void> addBook(@RequestBody Book book) {
-        bookService.saveBook(book);
+        bookService.updateBook(book);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

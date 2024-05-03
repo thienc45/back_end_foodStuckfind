@@ -20,7 +20,7 @@ import org.springframework.cache.annotation.EnableCaching;
                 description = "StuckFood Information"),
         externalDocs = @ExternalDocumentation(description = "Basic for OAS to lean OAS with spring boot and jwt",
                 url = "https://www.javainuse.com/spring/boot_swagger3"))
-@EnableCaching
+//@EnableCaching
 @SpringBootApplication
 public class DemoFoodTruckFindApplication {
 

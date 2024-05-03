@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +26,6 @@ public class TestController {
         return "Public Content.";
     }
 
-    @Cacheable
     @Operation(summary = "This method is used to get the clients.")
     @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/user")
@@ -35,7 +33,7 @@ public class TestController {
         return "User Content.";
     }
 
-    @Cacheable
+
     @Operation(summary = "This method is used to get the clients.")
     @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/mod")
@@ -43,7 +41,6 @@ public class TestController {
         return "Moderator Board.";
     }
 
-    @Cacheable
     @Operation(summary = "This method is used to get the clients.")
     @SecurityRequirement(name = "bearerAuth")
     @GetMapping("/admin")
