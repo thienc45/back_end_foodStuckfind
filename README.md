@@ -38,4 +38,4 @@ Tạo API tương ứng bằng cách sử dụng `@GetMapping` để tích hợp
         ```bash
         ec2-user@public_host
         ```
-        Thien_de
+        Thien
