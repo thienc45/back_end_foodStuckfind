@@ -1,11 +1,11 @@
 # Giới Thiệu: GraphQL
 
-Grapql nó chỉ có duy nhất một entpoint  khác với restapi sẽ có nhiều endpoit khác nhau
-Nó chỉ là một ngôn ngữ truy vấn nên nó không phải là khả năng thay thế cho thằng rest 
-Mà chúng ta có thể bổ sung cho nhau và kết hợp cả 2 ở trong cùng 1 dự án 
-Grapql có một hệ thống kiểu dữ liệu rõ ràng  và font end dễ dàng biết  được những sự thay đổi khi thực hiện request tới backend và thực hiện query mutation 
+Grapql nó chỉ có duy nhất một entpoint khác với restapi sẽ có nhiều endpoit khác nhau
+Nó chỉ là một ngôn ngữ truy vấn nên nó không phải là khả năng thay thế cho thằng rest
+Mà chúng ta có thể bổ sung cho nhau và kết hợp cả 2 ở trong cùng 1 dự án
+Grapql có một hệ thống kiểu dữ liệu rõ ràng và font end dễ dàng biết được những sự thay đổi khi thực hiện request tới backend và thực hiện query mutation
 
-#  Có 3 loại operation: 
+# Có 3 loại operation:
 
 ![Alt text](image.png)
 
@@ -17,11 +17,9 @@ Grapql có một hệ thống kiểu dữ liệu rõ ràng  và font end dễ d�
 
 # Cách triển khai GraphQl trên spring boot
 
+### các depency cần thiết
 
-
-###  các depency cần thiết 
-
-````java
+```java
   <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-graphql</artifactId>
@@ -47,10 +45,9 @@ Grapql có một hệ thống kiểu dữ liệu rõ ràng  và font end dễ d�
             <artifactId>graphql-java-tools</artifactId>
             <version>5.2.4</version>
         </dependency>
-````
+```
 
 Link chạy: http://localhost:8081/graphiql
-
 
 ```graphql
 Get All Books
@@ -63,7 +60,7 @@ query {
   }
 }
 
-return 
+return
 
 {
   "data": {
@@ -87,7 +84,7 @@ query {
   }
 }
 
-return 
+return
 
 {
   "data": {
@@ -109,7 +106,7 @@ mutation {
   }
 }
 
-return 
+return
 
 {
   "data": {
@@ -131,7 +128,7 @@ mutation {
   }
 }
 
-return 
+return
 
 {
   "data": {
@@ -148,7 +145,7 @@ mutation {
   deleteBook(id: 1)
 }
 
-return 
+return
 {
   "data": {
     "deleteBook": true
@@ -168,7 +165,7 @@ mutation {
   }
 }
 
-return 
+return
 
 {
   "data": {
@@ -198,7 +195,7 @@ mutation {
   }
 }
 
-return 
+return
 
 {
   "data": {
@@ -215,5 +212,3 @@ return
 
 
 ```
-
-
