@@ -5,7 +5,7 @@ Nó chỉ là một ngôn ngữ truy vấn nên nó không phải là khả năn
 Mà chúng ta có thể bổ sung cho nhau và kết hợp cả 2 ở trong cùng 1 dự án 
 Grapql có một hệ thống kiểu dữ liệu rõ ràng  và font end dễ dàng biết  được những sự thay đổi khi thực hiện request tới backend và thực hiện query mutation 
 
-#  Có 3 loại GrahQL: 
+#  Có 3 loại operation: 
 
 ![Alt text](image.png)
 

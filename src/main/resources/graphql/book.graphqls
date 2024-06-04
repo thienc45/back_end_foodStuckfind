@@ -8,6 +8,7 @@ type Query {
     getBookById(id: ID!): Book
     getAllBooks: [Book]
 }
+
 #jwt start
 type MessageResponse {
     message: String!
