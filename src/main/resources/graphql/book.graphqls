@@ -1,0 +1,42 @@
+type Book {
+    id: ID!
+    title: String!
+    author: String!
+}
+
+type Query {
+    getBookById(id: ID!): Book
+    getAllBooks: [Book]
+}
+#jwt start
+type MessageResponse {
+    message: String!
+}
+
+type JwtResponse {
+    token: String!
+    type: String!
+    id: ID!
+    username: String!
+    email: String!
+    trangThai: Int
+    roles: [String!]!
+}
+
+input SignupRequest {
+    username: String!
+    email: String!
+    password: String!
+    role: [String!]
+}
+#jwt end
+
+type Mutation {
+    createBook(title: String!, author: String!): Book
+    updateBook(id: ID!, title: String, author: String): Book
+    deleteBook(id: ID!): Boolean
+
+    registerUser(signUpRequest: SignupRequest!): MessageResponse
+    authenticateUser(username: String!, password: String!): JwtResponse!
+
+}

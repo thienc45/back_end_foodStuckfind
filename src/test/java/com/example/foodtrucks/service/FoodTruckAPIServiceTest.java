@@ -23,9 +23,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 //test của em đang fail
 @SpringBootTest(classes = {FoodTruckAPIServiceImpl.class, AppConfig.class})
-
-
-
 public class FoodTruckAPIServiceTest {
 
     @MockBean

@@ -59,9 +59,10 @@ public class SecurityConfig {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/auth/**",  "/swagger-ui-custom.html", "/swagger-ui/**", "/api-docs", "/api/foodtruct/**").permitAll()
+                        auth.requestMatchers("/api/auth/**",  "/swagger-ui-custom.html", "/swagger-ui/**", "/api-docs", "/api/foodtruct/**","/api/books/**","/graphql-schema","/graphiql").permitAll()
+                               .requestMatchers("/graphql-schema/**","/graphql/**").permitAll()
                                 .requestMatchers("/api/books/**","/api/test/user").hasAuthority("ROLE_USER")
-                                .requestMatchers("/api/test/admin").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers("/api/test/admin","/api/books/**").hasAuthority("ROLE_ADMIN")
                                 .requestMatchers("/api/test/mod").hasAuthority("ROLE_MODERATOR")
                                 //hasAuthority() có thể dùng nhanh cấu hình quyền thày vì dùng anotation  cấu hiình cho từng api
 
