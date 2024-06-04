@@ -31,7 +31,6 @@ public class BookServiceImpl {
                 System.out.println("Caching books in Redis");
                 redisTemplate.opsForList().rightPushAll(ConstantRedisKey.KEY_BOOK_ALL, books.toArray(), Duration.ofMinutes(1));
             }
-
             return books;
         }
     }
